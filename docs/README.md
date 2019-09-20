@@ -5,7 +5,7 @@ heroImageStyle: {
   maxWidth: '600px',
   width: '100%',
   display: block,
-  margin: '9rem auto 2rem',
+  margin: '6rem auto 2rem',
   background: '#fff',
   borderRadius: '1rem',
 }

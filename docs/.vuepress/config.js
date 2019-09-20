@@ -1,4 +1,33 @@
-module.exports = {
+/* 
+// 打算自定义一个sidebar，奈何以失败告终，以后有时间看吧
+const fs = require("fs");
+
+
+function sideBar (foldPath, title) {
+  let obj = {
+    title: title,
+    collapsable: false,
+    sidebarDepth: 2,
+    children:[]
+  }
+  let files = fs.readdirSync(foldPath)
+  files.forEach((file) => {
+    let stats = fs.statSync(foldPath + '/' + file)
+      if (stats.isFile()) {
+        obj.children.push(file)
+      }
+      if (stats.isDirectory()) {
+        obj.children.push(sideBar(foldPath +　'/' + file, file))
+      }
+  })
+  return [obj]
+}
+// let bar = sideBar('./docs/records', 'records')
+
+// console.log(bar) 
+*/
+
+let config = {
   "title": "Demon",
   "description": "Simple Love, Simple Life",
   "dest": "public",
@@ -34,42 +63,42 @@ module.exports = {
       {
         "text": "AboutMe",
         "link": "/about/",
-        "icon": "iconfont blog-person"
+        "icon": "reco-account"
       },
       {
         "text": "Contact",
         "icon": "reco-message",
         "items": [
-          {
-            "text": "NPM",
-            "link": "https://www.npmjs.com/~reco_luan",
-            "icon": "reco-npm"
-          },
+          // {
+          //   "text": "NPM",
+          //   "link": "https://www.npmjs.com/~reco_luan",
+          //   "icon": "reco-npm"
+          // },
           {
             "text": "GitHub",
-            "link": "https://github.com/recoluan",
+            "link": "https://github.com/demonze",
             "icon": "reco-github"
           },
-          {
-            "text": "简书",
-            "link": "https://www.jianshu.com/u/cd674a19515e",
-            "icon": "reco-jianshu"
-          },
+          // {
+          //   "text": "简书",
+          //   "link": "https://www.jianshu.com/u/cd674a19515e",
+          //   "icon": "reco-jianshu"
+          // },
           {
             "text": "CSDN",
-            "link": "https://blog.csdn.net/recoluan",
+            "link": "https://blog.csdn.net/qq_35656123",
             "icon": "reco-csdn"
           },
-          {
-            "text": "博客圆",
-            "link": "https://www.cnblogs.com/luanhewei/",
-            "icon": "reco-bokeyuan"
-          },
-          {
-            "text": "WeChat",
-            "link": "https://mp.weixin.qq.com/s/mXFqeUTegdvPliXknAAG_A",
-            "icon": "reco-wechat"
-          }
+          // {
+          //   "text": "博客圆",
+          //   "link": "https://www.cnblogs.com/luanhewei/",
+          //   "icon": "reco-bokeyuan"
+          // },
+          // {
+          //   "text": "WeChat",
+          //   "link": "https://mp.weixin.qq.com/s/mXFqeUTegdvPliXknAAG_A",
+          //   "icon": "reco-wechat"
+          // }
         ]
       }
     ],
@@ -112,3 +141,5 @@ module.exports = {
     "flowchart"
   ]
 }
+
+module.exports = config
