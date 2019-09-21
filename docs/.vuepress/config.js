@@ -124,7 +124,9 @@ let config = {
     "valineConfig": {
       "appId": 'MMLLsac9MdB8h34jL9uqnLV0-gzGzoHsz',// your appId
       "appKey": 'VurGC81Abcl5jIV1tuEI07zg', // your appKey
-      "recordIP": true
+      "recordIP": true,
+      "notify": true,
+      "verify": false
     },
     // 加密
     // "keyPage": {
