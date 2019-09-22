@@ -8,15 +8,20 @@ date: 2019-09-19
 |  |  |
 | :---- | :---- |
 | <span class="iconfont blog-name"></span> name：| 杨泽红 |
-| <span class="iconfont blog-sex_man"></span> sex：| 男 |
-| <span class="iconfont blog-tel"></span> tel: | 152 3510 5576 |
-| <span class="iconfont blog-email"></span> email: |15235105576@163.com |
+| <span class="iconfont blog-job"></span> job：| 前端开发 |
+| <span class="iconfont blog-email"></span> email: |demon.ze@qq.com |
 | <span class="iconfont blog-blog"></span> blog: | <https://demonze.github.io> |
+| <span class="iconfont reco-csdn"></span> csdn: | <https://blog.csdn.net/qq_35656123> |
 
 ## 技能领域
 
-- 熟悉vue全家桶（vue + vuex + vue-router + axios + vue-cli）
-- ...慢慢完善
+- vue全家桶（vue + vuex + vue-router + axios + vue-cli）
+- ElementUI  Vant  AntDesign
+- Sass Less Stylus
+- git
+- webpack
+- 先深入Vue、慢慢react、node
+
 <!-- <table>
     <tbody>
         <tr>

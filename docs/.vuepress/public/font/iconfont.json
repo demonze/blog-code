@@ -13,6 +13,13 @@
       "unicode_decimal": 59003
     },
     {
+      "icon_id": "1053825",
+      "name": "工作台",
+      "font_class": "job",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
       "icon_id": "1160236",
       "name": "tel",
       "font_class": "tel",

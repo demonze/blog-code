@@ -61,11 +61,16 @@ let config = {
         "icon": "reco-date"
       },
       {
+        "text": "FriendLink",
+        "link": "/friendlink/",
+        "icon": "reco-coding"
+      },
+      {
         "text": "AboutMe",
         "link": "/about/",
         "icon": "reco-account"
-      },
-      {
+      }
+      /* {
         "text": "Contact",
         "icon": "reco-message",
         "items": [
@@ -100,7 +105,7 @@ let config = {
           //   "icon": "reco-wechat"
           // }
         ]
-      }
+      } */
     ],
     // "type": "blog",
     "blogConfig": {
@@ -124,6 +129,7 @@ let config = {
     "valineConfig": {
       "appId": 'MMLLsac9MdB8h34jL9uqnLV0-gzGzoHsz',// your appId
       "appKey": 'VurGC81Abcl5jIV1tuEI07zg', // your appKey
+      "placeholder": "It's your show time (填写邮箱会收到回复提醒哦~)",
       "recordIP": true,
       "notify": true,
       "verify": false
