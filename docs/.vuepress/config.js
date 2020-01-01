@@ -124,7 +124,7 @@ let config = {
     "sidebar": "auto",
     "lastUpdated": "Last Updated",
     "author": "demonze",
-    // "record": "xxxx",
+    "record": "京ICP备19058817号-1",
     "startYear": "2019",
     "valineConfig": {
       "appId": 'MMLLsac9MdB8h34jL9uqnLV0-gzGzoHsz',// your appId
