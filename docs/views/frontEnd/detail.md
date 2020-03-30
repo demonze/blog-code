@@ -6,6 +6,7 @@ tags:
     - js
     - html
     - css
+    - update
 categories:
     - frontEnd
 ---

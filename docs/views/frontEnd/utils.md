@@ -7,6 +7,7 @@ tags:
     - css
     - js
     - vue
+    - update
 categories:
     - frontEnd
 keys:

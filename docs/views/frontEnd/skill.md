@@ -7,6 +7,7 @@ tags:
     - css
     - js
     - vue
+    - update
 categories:
     - frontEnd
 keys:
@@ -120,3 +121,68 @@ export default {
 ```
 
 之后就是在需要刷新的时候调用`this.reload()`方法了
+
+
+## js
+
+### 获取当前元素到文档顶部的位置（left, top）
+
+```js
+offset (element) {
+    let pos = { left: 0, top: 0 }
+    let parents = element.offsetParent
+    pos.left += element.offsetLeft
+    pos.top += element.offsetTop
+    while (parents && !/html|body/i.test(parents.tagName)) {
+        pos.left += parents.offsetLeft
+        pos.top += parents.offsetTop
+        parents = parents.offsetParent
+    }
+    return pos
+}
+```
+
+### 点击元素外部触发
+
+#### 代码
+
+```js
+const eventNames = ['click', 'touchend'];
+export default function (el, callback) {
+    let isTouch = false;
+    function handler(ev) {
+        // touchend
+        if (eventNames[1] === ev.type) isTouch = true;
+        // 禁止移动端touchend触发后还触发click
+        if (eventNames[0] === ev.type && isTouch) return;
+        // 判断点击元素是否在el外
+        // 由于ev.target的类型是EventTarget,
+        // 而contains方法标注的参数类型是Node, 
+        // 实际上EventTarget也是dom元素,
+        // 所以此处使用需要类型断言, 标注为Node类型
+        if (!el.contains(ev.target)) callback(ev);
+    }
+
+    eventNames.forEach(name => {
+        document.addEventListener(name, handler);
+    });
+
+    return () => {
+        eventNames.forEach(name => {
+            document.removeEventListener(name, handler);
+        });
+    }
+}
+
+```
+
+#### 使用
+
+```js
+// 开始监听
+const cancel = clickOutside(el, e=>{
+    // 点击el外部触发
+});
+// 取消监听
+cancel();
+```
