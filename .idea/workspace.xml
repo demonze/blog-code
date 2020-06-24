@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de932330-1df8-4dd0-bc2b-cd4a900ca595" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/views/frontEnd/2020/20200620.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/views/frontEnd/2020/20200620.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,26 +15,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/views/frontEnd/2020/20200620.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="322">
-                <caret line="305" lean-forward="true" selection-start-line="305" selection-end-line="305" />
+              <first_editor relative-caret-position="400">
+                <caret line="251" column="10" lean-forward="true" selection-start-line="251" selection-start-column="10" selection-end-line="251" selection-end-column="10" />
                 <folding>
                   <element signature="e#0#37#0" expanded="true" />
                 </folding>
               </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/views/frontEnd/2020/20200515.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
               <second_editor />
             </state>
           </provider>
@@ -88,6 +76,7 @@
         <option value="$PROJECT_DIR$/docs/views/frontEnd/2020/20200328.md" />
         <option value="$PROJECT_DIR$/docs/views/frontEnd/2020/20200407.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/docs/views/frontEnd/2020/20200515.md" />
         <option value="$PROJECT_DIR$/docs/views/frontEnd/2020/20200620.md" />
       </list>
     </option>
@@ -199,17 +188,17 @@
       <workItem from="1582027319480" duration="449000" />
       <workItem from="1585387629106" duration="10972000" />
       <workItem from="1586263230649" duration="4125000" />
-      <workItem from="1592900540385" duration="1831000" />
+      <workItem from="1592900540385" duration="3205000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23506000" />
+    <option name="totallyTimeSpent" value="24880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="977" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4987775" visible="true" weight="0.24973601" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987775" visible="true" weight="0.24973601" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.5012225" side_tool="true" weight="0.122023806" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -223,7 +212,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28470588" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28470588" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -369,11 +358,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/views/frontEnd/2020/20200515.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="189">
+            <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docs/views/frontEnd/2020/20200620.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="322">
-            <caret line="305" lean-forward="true" selection-start-line="305" selection-end-line="305" />
+          <first_editor relative-caret-position="400">
+            <caret line="251" column="10" lean-forward="true" selection-start-line="251" selection-start-column="10" selection-end-line="251" selection-end-column="10" />
             <folding>
               <element signature="e#0#37#0" expanded="true" />
             </folding>
