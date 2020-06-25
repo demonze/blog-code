@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de932330-1df8-4dd0-bc2b-cd4a900ca595" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="de932330-1df8-4dd0-bc2b-cd4a900ca595" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -39,13 +37,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="2730" />
+          <entry key="md" value="2731" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="9" />
-          <entry key="Markdown" value="2721" />
+          <entry key="Markdown" value="2722" />
         </counts>
       </usages-collector>
     </session>
@@ -80,8 +78,8 @@
         <entry file="file://$PROJECT_DIR$/docs/views/frontEnd/2020/20200407.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="268">
-                <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+              <first_editor relative-caret-position="300">
+                <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
               </first_editor>
               <second_editor />
             </state>
@@ -229,12 +227,12 @@
       <workItem from="1582023683501" duration="593000" />
       <workItem from="1582027319480" duration="449000" />
       <workItem from="1585387629106" duration="10972000" />
-      <workItem from="1586263230649" duration="4125000" />
+      <workItem from="1586263230649" duration="6994000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21675000" />
+    <option name="totallyTimeSpent" value="24544000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -349,8 +347,8 @@
     <entry file="file://$PROJECT_DIR$/docs/views/frontEnd/2020/20200407.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="268">
-            <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+          <first_editor relative-caret-position="300">
+            <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
           </first_editor>
           <second_editor />
         </state>
