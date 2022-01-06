@@ -24,4 +24,3 @@ jobs:
           ACCESS_TOKEN: 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
           BRANCH: gh-pages
           FOLDER: docs/.vuepress/dist
-          

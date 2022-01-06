@@ -1,4 +1,4 @@
-/* 
+/*
 // 打算自定义一个sidebar，奈何以失败告终，以后有时间看吧
 const fs = require("fs");
 
@@ -24,13 +24,13 @@ function sideBar (foldPath, title) {
 }
 // let bar = sideBar('./docs/records', 'records')
 
-// console.log(bar) 
+// console.log(bar)
 */
 
 let config = {
   "title": "Demon",
   "description": "Simple Love, Simple Life",
-  "dest": "public",
+  "base": "/blog-code/",
   "head": [
     [
       "link",
