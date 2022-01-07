@@ -4,15 +4,435 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>封装axios（包含cancelToken源码解析） | Demon</title>
-    <meta name="description" content="Simple Love, Simple Life">
+    <meta name="generator" content="VuePress 1.9.5">
     <link rel="icon" href="/blog-code/favicon.ico">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="description" content="Simple Love, Simple Life">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     
-    <link rel="preload" href="/blog-code/assets/css/0.styles.f96ff84c.css" as="style"><link rel="preload" href="/blog-code/assets/js/app.95369e06.js" as="script"><link rel="preload" href="/blog-code/assets/js/5.a1313a2d.js" as="script"><link rel="preload" href="/blog-code/assets/js/2.ad05db55.js" as="script"><link rel="prefetch" href="/blog-code/assets/js/1.8979a68a.js"><link rel="prefetch" href="/blog-code/assets/js/10.41d6a71d.js"><link rel="prefetch" href="/blog-code/assets/js/11.e13c6580.js"><link rel="prefetch" href="/blog-code/assets/js/12.eb44d4ca.js"><link rel="prefetch" href="/blog-code/assets/js/13.20ee3432.js"><link rel="prefetch" href="/blog-code/assets/js/14.9bc27c15.js"><link rel="prefetch" href="/blog-code/assets/js/15.4fbd000c.js"><link rel="prefetch" href="/blog-code/assets/js/16.d392352b.js"><link rel="prefetch" href="/blog-code/assets/js/17.faf43df3.js"><link rel="prefetch" href="/blog-code/assets/js/18.924a924f.js"><link rel="prefetch" href="/blog-code/assets/js/19.0afe4e2e.js"><link rel="prefetch" href="/blog-code/assets/js/20.9a140b03.js"><link rel="prefetch" href="/blog-code/assets/js/21.d87913bb.js"><link rel="prefetch" href="/blog-code/assets/js/22.0209ad17.js"><link rel="prefetch" href="/blog-code/assets/js/23.2842d8a3.js"><link rel="prefetch" href="/blog-code/assets/js/24.07bc7e87.js"><link rel="prefetch" href="/blog-code/assets/js/25.02604d4f.js"><link rel="prefetch" href="/blog-code/assets/js/26.d942b03a.js"><link rel="prefetch" href="/blog-code/assets/js/27.3f138443.js"><link rel="prefetch" href="/blog-code/assets/js/28.065365ca.js"><link rel="prefetch" href="/blog-code/assets/js/29.26762fd6.js"><link rel="prefetch" href="/blog-code/assets/js/30.97055cf2.js"><link rel="prefetch" href="/blog-code/assets/js/31.3cb427b7.js"><link rel="prefetch" href="/blog-code/assets/js/32.b19c4e44.js"><link rel="prefetch" href="/blog-code/assets/js/33.ab1ddc4e.js"><link rel="prefetch" href="/blog-code/assets/js/34.3ff7fd37.js"><link rel="prefetch" href="/blog-code/assets/js/35.79d67be1.js"><link rel="prefetch" href="/blog-code/assets/js/6.104a761c.js"><link rel="prefetch" href="/blog-code/assets/js/7.915a97b8.js"><link rel="prefetch" href="/blog-code/assets/js/8.833d401e.js"><link rel="prefetch" href="/blog-code/assets/js/9.a5fbadae.js"><link rel="prefetch" href="/blog-code/assets/js/vendors~flowchart.5f17275e.js">
-    <link rel="stylesheet" href="/blog-code/assets/css/0.styles.f96ff84c.css">
+    <link rel="preload" href="/blog-code/assets/css/0.styles.749f85d1.css" as="style"><link rel="preload" href="/blog-code/assets/js/app.31c0e747.js" as="script"><link rel="preload" href="/blog-code/assets/js/4.2cc2e057.js" as="script"><link rel="preload" href="/blog-code/assets/js/1.889b9bb3.js" as="script"><link rel="preload" href="/blog-code/assets/js/29.a18242d8.js" as="script"><link rel="prefetch" href="/blog-code/assets/js/10.9abe4690.js"><link rel="prefetch" href="/blog-code/assets/js/11.5b88df1d.js"><link rel="prefetch" href="/blog-code/assets/js/12.2d18035c.js"><link rel="prefetch" href="/blog-code/assets/js/13.0a26d8dc.js"><link rel="prefetch" href="/blog-code/assets/js/14.77fe60c0.js"><link rel="prefetch" href="/blog-code/assets/js/15.e0939d84.js"><link rel="prefetch" href="/blog-code/assets/js/16.a7fa0939.js"><link rel="prefetch" href="/blog-code/assets/js/17.f3079f61.js"><link rel="prefetch" href="/blog-code/assets/js/18.b377383f.js"><link rel="prefetch" href="/blog-code/assets/js/19.b2009ffa.js"><link rel="prefetch" href="/blog-code/assets/js/20.7d1f0332.js"><link rel="prefetch" href="/blog-code/assets/js/21.e9b61524.js"><link rel="prefetch" href="/blog-code/assets/js/22.3971f8c2.js"><link rel="prefetch" href="/blog-code/assets/js/23.4956a536.js"><link rel="prefetch" href="/blog-code/assets/js/24.a317becf.js"><link rel="prefetch" href="/blog-code/assets/js/25.0c11fb62.js"><link rel="prefetch" href="/blog-code/assets/js/26.ed55ed23.js"><link rel="prefetch" href="/blog-code/assets/js/27.33e06ff2.js"><link rel="prefetch" href="/blog-code/assets/js/28.4a5f419d.js"><link rel="prefetch" href="/blog-code/assets/js/30.114b2a4c.js"><link rel="prefetch" href="/blog-code/assets/js/31.96387928.js"><link rel="prefetch" href="/blog-code/assets/js/32.b00a226a.js"><link rel="prefetch" href="/blog-code/assets/js/33.da76f69f.js"><link rel="prefetch" href="/blog-code/assets/js/34.2192be7f.js"><link rel="prefetch" href="/blog-code/assets/js/5.5474ffdf.js"><link rel="prefetch" href="/blog-code/assets/js/6.387f6898.js"><link rel="prefetch" href="/blog-code/assets/js/7.ca08c801.js"><link rel="prefetch" href="/blog-code/assets/js/8.0fe56947.js"><link rel="prefetch" href="/blog-code/assets/js/9.550d8076.js"><link rel="prefetch" href="/blog-code/assets/js/vendors~flowchart.0be769d1.js">
+    <link rel="stylesheet" href="/blog-code/assets/css/0.styles.749f85d1.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div><div class="theme-container" data-v-3c4879f5><div id="loader-wrapper" data-v-ebfe5c26 data-v-3c4879f5 data-v-3c4879f5><div class="loader-main" data-v-ebfe5c26><div data-v-ebfe5c26></div><div data-v-ebfe5c26></div><div data-v-ebfe5c26></div><div data-v-ebfe5c26></div></div> <!----> <p class="description" data-v-ebfe5c26>Just wait a minute!</p></div></div></div><div class="global-ui"></div></div>
-    <script src="/blog-code/assets/js/app.95369e06.js" defer></script><script src="/blog-code/assets/js/5.a1313a2d.js" defer></script><script src="/blog-code/assets/js/2.ad05db55.js" defer></script>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-1aefc0b4><div data-v-1aefc0b4><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-1aefc0b4 data-v-1aefc0b4><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Demon</h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2>Simple Love, Simple Life</p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>demonze</span>
+            
+          <span data-v-25ba6db2>2019 - </span>
+          2022
+        </a></span></div></div> <div class="hide" data-v-1aefc0b4><header class="navbar" data-v-1aefc0b4><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog-code/" class="home-link router-link-active"><img src="/blog-code/head.png" alt="Demon" class="logo"> <span class="site-name">Demon</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog-code/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog-code/categories/frontEnd/" class="nav-link"><i class="undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/blog-code/categories/backEnd/" class="nav-link"><i class="undefined"></i>
+  backEnd
+</a></li><li class="dropdown-item"><!----> <a href="/blog-code/categories/records/" class="nav-link"><i class="undefined"></i>
+  records
+</a></li></ul></div></div><div class="nav-item"><a href="/blog-code/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/blog-code/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/blog-code/friendlink/" class="nav-link"><i class="iconfont reco-coding"></i>
+  FriendLink
+</a></div><div class="nav-item"><a href="/blog-code/about/" class="nav-link"><i class="iconfont reco-account"></i>
+  AboutMe
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-1aefc0b4></div> <aside class="sidebar" data-v-1aefc0b4><div class="personal-info-wrapper" data-v-39576ba9 data-v-1aefc0b4><!----> <h3 class="name" data-v-39576ba9>
+    demonze
+  </h3> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>23</h3> <h6 data-v-39576ba9>Articles</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>16</h3> <h6 data-v-39576ba9>Tags</h6></div></div> <ul class="social-links" data-v-39576ba9></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/blog-code/" class="nav-link"><i class="iconfont reco-home"></i>
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog-code/categories/frontEnd/" class="nav-link"><i class="undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/blog-code/categories/backEnd/" class="nav-link"><i class="undefined"></i>
+  backEnd
+</a></li><li class="dropdown-item"><!----> <a href="/blog-code/categories/records/" class="nav-link"><i class="undefined"></i>
+  records
+</a></li></ul></div></div><div class="nav-item"><a href="/blog-code/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/blog-code/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/blog-code/friendlink/" class="nav-link"><i class="iconfont reco-coding"></i>
+  FriendLink
+</a></div><div class="nav-item"><a href="/blog-code/about/" class="nav-link"><i class="iconfont reco-account"></i>
+  AboutMe
+</a></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>封装axios（包含cancelToken源码解析）</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>demonze</span>
+            
+          <span data-v-25ba6db2>2019 - </span>
+          2022
+        </a></span></div></div> <div data-v-1aefc0b4><main class="page"><section><div class="page-title"><h1 class="title">封装axios（包含cancelToken源码解析）</h1> <div data-v-f875f3fc><i class="iconfont reco-account" data-v-f875f3fc><span data-v-f875f3fc>demonze</span></i> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>7/15/2020</span></i> <i class="iconfont reco-eye" data-v-f875f3fc><span id="/blog-code/views/frontEnd/2020/20200715.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-f875f3fc><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <i class="tags iconfont reco-tag" data-v-f875f3fc><span class="tag-item" data-v-f875f3fc>vue</span><span class="tag-item" data-v-f875f3fc>sourceCode</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="目标"><a href="#目标" class="header-anchor">#</a> 目标</h2> <p>封装的意义在于使用的时候尽量方便。</p> <p>此次封装的目标，是使用尽量简单的配置完成接口的请求。</p> <p>思来想去，决定使用以下配置：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 配置介绍</span>
+<span class="token punctuation">[</span>调用方法名<span class="token punctuation">]</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 请求方式</span>
+    url<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 请求url</span>
+    autoCancel<span class="token operator">:</span> Boolean<span class="token punctuation">,</span> <span class="token comment">// 重复频繁请求时是否取消上次请求</span>
+    headers<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 请求头配置</span>
+    <span class="token operator">...</span> <span class="token comment">// axios支持的其他配置</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 例如</span>
+<span class="token keyword">const</span> api <span class="token operator">=</span> <span class="token punctuation">{</span>
+  getUserInfo<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'/common/xxx'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  saveSomething<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'/common/xxx'</span><span class="token punctuation">,</span>
+    autoCancel<span class="token operator">:</span> <span class="token boolean">true</span>
+    headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'application/x-www-form-urlencoded'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>使用的时候，直接这样调用即可：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">import</span> api <span class="token keyword">from</span> <span class="token string">'api'</span>
+
+api<span class="token punctuation">.</span><span class="token function">getUserInfo</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="开始封装"><a href="#开始封装" class="header-anchor">#</a> 开始封装</h2> <p>其中 1. <strong>请求及返回拦截</strong>  2. <strong>处理异常</strong>  这两块内容基本都大同小异，简单快速浏览即可</p> <h3 id="请求及返回拦截"><a href="#请求及返回拦截" class="header-anchor">#</a> 请求及返回拦截</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/axios.js</span>
+
+<span class="token comment">// 创建axios实例</span>
+<span class="token keyword">let</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>timeout<span class="token operator">:</span> <span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">20</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 设置post请求头</span>
+instance<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>post<span class="token punctuation">[</span><span class="token string">'Content-Type'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'application/x-www-form-urlencoded'</span>
+<span class="token comment">/**
+ * 请求拦截器
+ * 每次请求前，如果存在token则在请求头中携带token
+ */</span>
+instance<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token parameter">config</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 登录流程控制中，根据本地是否存在token判断用户的登录情况</span>
+    <span class="token comment">// 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token</span>
+    <span class="token comment">// 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码</span>
+    <span class="token comment">// 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。</span>
+    <span class="token comment">// const token = store.state.token</span>
+    <span class="token comment">// token &amp;&amp; (config.headers.Authorization = token)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>data <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>headers <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'Content-Type'</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'application/x-www-form-urlencoded'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      config<span class="token punctuation">.</span>data <span class="token operator">=</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>data<span class="token punctuation">,</span> <span class="token punctuation">{</span> allowDots<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> config
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token parameter">error</span> <span class="token operator">=&gt;</span> Promise<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">// 响应拦截器</span>
+instance<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token comment">// 请求成功</span>
+  <span class="token parameter">res</span> <span class="token operator">=&gt;</span> res<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span> <span class="token operator">?</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">:</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token comment">// 请求失败</span>
+  <span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> response <span class="token punctuation">}</span> <span class="token operator">=</span> error
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 请求已发出，但是不在2xx的范围</span>
+      <span class="token function">errorHandle</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>status<span class="token punctuation">,</span> response<span class="token punctuation">.</span>data<span class="token punctuation">.</span>message<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 处理断网的情况</span>
+      <span class="token comment">// eg:请求超时或断网时，更新state的network状态</span>
+      <span class="token comment">// network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏</span>
+      <span class="token comment">// 关于断网组件中的刷新重新获取数据，会在断网组件中说明</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>onLine<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'changeNetwork'</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br></div></div><h3 id="处理异常"><a href="#处理异常" class="header-anchor">#</a> 处理异常</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/axios.js</span>
+
+<span class="token comment">/**
+ * 请求失败后的错误统一处理
+ * @param {Number} status 请求失败的状态码
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">errorHandle</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">status<span class="token punctuation">,</span> other</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 状态码判断</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 401: 未登录状态，跳转登录页</span>
+    <span class="token keyword">case</span> <span class="token number">401</span><span class="token operator">:</span>
+      <span class="token function">toLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>
+    <span class="token comment">// 403 token过期</span>
+    <span class="token comment">// 清除token并跳转登录页</span>
+    <span class="token keyword">case</span> <span class="token number">403</span><span class="token operator">:</span>
+      <span class="token function">tip</span><span class="token punctuation">(</span><span class="token string">'登录过期，请重新登录'</span><span class="token punctuation">)</span>
+      localStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span>
+      store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'loginSuccess'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">toLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>
+    <span class="token comment">// 404请求不存在</span>
+    <span class="token keyword">case</span> <span class="token number">404</span><span class="token operator">:</span>
+      <span class="token function">tip</span><span class="token punctuation">(</span><span class="token string">'请求的资源不存在'</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>other<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><p>其中的<code>tip()</code>是全局提示的方法，如下：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/axios.js</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Toast <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vant'</span>
+
+<span class="token comment">/**
+ * 提示函数
+ * 禁止点击蒙层、显示一秒后关闭
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">tip</span> <span class="token operator">=</span> <span class="token parameter">msg</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">Toast</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    message<span class="token operator">:</span> msg<span class="token punctuation">,</span>
+    duration<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+    forbidClick<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="对外暴露方法"><a href="#对外暴露方法" class="header-anchor">#</a> 对外暴露方法</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/axios.js</span>
+
+<span class="token comment">/**
+ * 请求数据的方法，所有请求都调用此方法
+ * @param {string} type 请求方法，默认为get
+ * @param {string} url 请求url
+ * @param {object} data post时的数据
+ * @param {object} params get时的数据
+ * @param {object} headers 请求头配置
+ * @param {object} config 其他axios配置
+ * @param {boolean} autoCancel 是否自动取消请求（取消重复请求）
+ * @returns {Promise&lt;any&gt;}
+ */</span>
+<span class="token keyword">function</span> <span class="token function">request</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>type <span class="token operator">=</span> <span class="token string">'get'</span><span class="token punctuation">,</span> url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> params<span class="token punctuation">,</span> headers<span class="token punctuation">,</span> config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> autoCancel<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  type <span class="token operator">=</span> type<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// get请求时，如果params没值，则取data（防止用户使用参数错误）</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'get'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    params <span class="token operator">=</span> params <span class="token operator">||</span> data
+    data <span class="token operator">=</span> <span class="token keyword">undefined</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>autoCancel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> cc <span class="token operator">=</span> window<span class="token punctuation">.</span>cancelApiMap<span class="token punctuation">[</span>url<span class="token punctuation">]</span>
+    cc <span class="token operator">&amp;&amp;</span> cc<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token string">'cancel repeat request'</span><span class="token punctuation">)</span> <span class="token comment">// 如果已有则取消</span>
+    <span class="token keyword">let</span> newcc <span class="token operator">=</span> axios<span class="token punctuation">.</span>CancelToken<span class="token punctuation">.</span><span class="token function">source</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    window<span class="token punctuation">.</span>cancelApiMap<span class="token punctuation">[</span>url<span class="token punctuation">]</span> <span class="token operator">=</span> newcc
+    config<span class="token punctuation">.</span>cancelToken <span class="token operator">=</span> newcc<span class="token punctuation">.</span>token <span class="token comment">// 重新添加cancelToken标志</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      method<span class="token operator">:</span> type<span class="token punctuation">,</span>
+      url<span class="token punctuation">,</span>
+      data<span class="token punctuation">,</span>
+      params<span class="token punctuation">,</span>
+      headers<span class="token punctuation">,</span>
+      <span class="token operator">...</span>config
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>data<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 请求成功，删除cancel标记</span>
+      window<span class="token punctuation">.</span>cancelApiMap<span class="token punctuation">[</span>url<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token keyword">delete</span> window<span class="token punctuation">.</span>cancelApiMap<span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+      <span class="token comment">// data.success ? resolve(data) : reject(data)</span>
+      <span class="token comment">// if (data.success) {</span>
+      <span class="token comment">//   resolve(data)</span>
+      <span class="token comment">// } else {</span>
+      <span class="token comment">//   reject(data)</span>
+      <span class="token comment">// }</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> request
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br></div></div><h3 id="支持取消页面内全部请求"><a href="#支持取消页面内全部请求" class="header-anchor">#</a> 支持取消页面内全部请求</h3> <p>有时候，切换页面时我们需要清空当前页面内还未完成的请求，添加以下代码即可</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/axios.js</span>
+
+<span class="token comment">// 设一个开关，开启或关闭取消页面内全部请求的功能</span>
+<span class="token keyword">const</span> <span class="token constant">API_CANCEL_PAGE</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+
+<span class="token comment">// 在请求拦截器里添加</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">API_CANCEL_PAGE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newcc <span class="token operator">=</span> axios<span class="token punctuation">.</span>CancelToken<span class="token punctuation">.</span><span class="token function">source</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  window<span class="token punctuation">.</span>cancelApiMap<span class="token punctuation">[</span>config<span class="token punctuation">.</span>url<span class="token punctuation">]</span> <span class="token operator">=</span> newcc
+  config<span class="token punctuation">.</span>cancelToken <span class="token operator">=</span> newcc<span class="token punctuation">.</span>token
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 导出一个方法</span>
+<span class="token comment">// 遍历我们上边存储cancelToken信息的对象，分别调用cancel方法，再将对象清空</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">cancelAllApi</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Object<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>cancelApiMap<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">api</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    api<span class="token punctuation">.</span>cancel <span class="token operator">?</span> api<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token string">'cancel all api'</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">api</span><span class="token punctuation">(</span><span class="token string">'cancel all api'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  window<span class="token punctuation">.</span>cancelApiMap <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="引入接口配置文件"><a href="#引入接口配置文件" class="header-anchor">#</a> 引入接口配置文件</h3> <p>我们项目中一般都是分模块进行编写接口的，这里对模块接口配置文件进行规范化，
+统一使用<code>[模块名].api.js</code>的写法，方便后续的配置。如：<code>common.api.js</code>、<code>home.api.js</code>等，
+下边给出一个例子。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/home.api,js</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  getTime<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'/common/get_time'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  getXkMode<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'/common/get_xk_mode.do'</span><span class="token punctuation">,</span>
+    autoCancel<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token comment">// headers: {</span>
+    <span class="token comment">//   'Content-Type': 'application/x-www-form-urlencoded'</span>
+    <span class="token comment">// }</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>引入的时候，使用webpack提供的<code>require.context()</code>方法直接引入，
+避免每次增删接口配置文件时手动增删引入。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/index.js</span>
+
+<span class="token keyword">let</span> apiObj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">dealFileName</span> <span class="token punctuation">(</span><span class="token parameter">str<span class="token punctuation">,</span> replaceStr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>replaceStr<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * 导入定义的接口配置
+ * @param files
+ */</span>
+<span class="token keyword">function</span> <span class="token function">importFile</span> <span class="token punctuation">(</span><span class="token parameter">files</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  files<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">name</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    apiObj<span class="token punctuation">[</span><span class="token function">dealFileName</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">'.api.js'</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">files</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">.</span>default
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//require.context的使用方法此处不做详细介绍</span>
+<span class="token function">importFile</span><span class="token punctuation">(</span>require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.api\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>此时<code>apiObj</code>的内容如下：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code>apiObj<span class="token operator">:</span> <span class="token punctuation">{</span>
+    common<span class="token operator">:</span> <span class="token punctuation">{</span>
+        getUserInfo<span class="token operator">:</span> <span class="token punctuation">{</span>
+            type<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'xxx'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    home<span class="token operator">:</span> <span class="token punctuation">{</span>
+        getCommonInfo<span class="token operator">:</span> <span class="token punctuation">{</span>
+            type<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+            utl<span class="token operator">:</span> <span class="token string">'xxx'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="将配置转化为方法"><a href="#将配置转化为方法" class="header-anchor">#</a> 将配置转化为方法</h3> <p>现在我们已经拿到了所有的接口配置文件，现在需要做的就是将配置转化为对应的接口请求方法。
+处理方法如下：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// api/index.js</span>
+
+<span class="token keyword">import</span> instance <span class="token keyword">from</span> <span class="token string">'./axios'</span>
+
+<span class="token keyword">let</span> apiMap <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>apiObj<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">key</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  apiMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>apiObj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">api</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    apiMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">[</span>api<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> query <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">[</span>apiObj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">[</span>api<span class="token punctuation">]</span><span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'post'</span> <span class="token operator">?</span> <span class="token string">'data'</span> <span class="token operator">:</span> <span class="token string">'params'</span><span class="token punctuation">]</span><span class="token operator">:</span> data
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">...</span>apiObj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">[</span>api<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">...</span>query<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>此时<code>apiMap</code>结构如下：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code>apiMap<span class="token operator">:</span> <span class="token punctuation">{</span>
+    common<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">getUserInfo</span><span class="token operator">:</span> <span class="token keyword">function</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    home<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">getCommonInfo</span><span class="token operator">:</span> <span class="token keyword">function</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>最后将<code>apiMap</code>导出即可使用</p> <h3 id="使用"><a href="#使用" class="header-anchor">#</a> 使用</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// src/xxx.vue</span>
+
+<span class="token keyword">import</span> api <span class="token keyword">from</span> <span class="token string">'@/api'</span>
+
+api<span class="token punctuation">.</span>common<span class="token punctuation">.</span><span class="token function">getUserInfo</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>以上为axios的封装，接下来我们看看CancelToken内部是怎么实现的。</p> <h2 id="canceltoken源码解析"><a href="#canceltoken源码解析" class="header-anchor">#</a> CancelToken源码解析</h2> <p>cancelToken基本使用方法</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api/app/course'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+   params<span class="token operator">:</span> params<span class="token punctuation">,</span>
+   cancelToken<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">CancelToken</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">executor</span><span class="token punctuation">(</span><span class="token parameter">c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// cancel函数赋值给cancelRequest属性</span>
+        <span class="token comment">// 从而可以通过cancelRequest执行取消请求的操作</span>
+        that<span class="token punctuation">.</span>cancelRequest <span class="token operator">=</span> c
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+  <span class="token comment">// 当需要取消请求的时候，调用cancelRequest即可</span>
+  that<span class="token punctuation">.</span><span class="token function">cancelRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>接下来我们一起看看源码</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// axios/lib/cancel/CancelToken.js 源码</span>
+
+<span class="token keyword">function</span> <span class="token function">CancelToken</span><span class="token punctuation">(</span><span class="token parameter">executor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> executor <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">'executor must be a function.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">var</span> resolvePromise<span class="token punctuation">;</span>
+  <span class="token comment">// 1. 关键代码，创建Promise对象，将resolve权限交给外部的resolvePromise</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>promise <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">promiseExecutor</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    resolvePromise <span class="token operator">=</span> resolve<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> token <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token comment">// 2. 将cancel方法当做参数传给回调函数，回调函数接收cancel方法</span>
+  <span class="token comment">// 假设回调函数用cancelRequest字段接收cancel，cancelRequest()即执行了cancel方法</span>
+  <span class="token comment">// cancel接收一个message参数，作为描述信息</span>
+  <span class="token function">executor</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">cancel</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>token<span class="token punctuation">.</span>reason<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Cancellation has already been requested</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    token<span class="token punctuation">.</span>reason <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cancel</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 3. 执行resolvePromise 将1处的promise状态置为resolve</span>
+    <span class="token comment">// 触发promise.then  转到下方的4处</span>
+    <span class="token function">resolvePromise</span><span class="token punctuation">(</span>token<span class="token punctuation">.</span>reason<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// axios/lib/adapters/xhr.js 源码</span>
+
+<span class="token comment">// ...</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>cancelToken<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Handle cancellation</span>
+  <span class="token comment">// 4. 调用cancel会触发这里的onCanceled方法</span>
+  config<span class="token punctuation">.</span>cancelToken<span class="token punctuation">.</span>promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">onCanceled</span><span class="token punctuation">(</span><span class="token parameter">cancel</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 调用xmlhttprequest的abort方法取消请求</span>
+    request<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将axios请求的状态置为reject</span>
+    <span class="token comment">// cancel是上边3处的token.reason</span>
+    <span class="token function">reject</span><span class="token punctuation">(</span>cancel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Clean up request</span>
+    request <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// ...</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><p>关键部分在代码里做了注释，我们再看看下边的代码，可以帮助理解第1处的代码。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">let</span> resolveHandle<span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    resolveHandle<span class="token operator">=</span>resolve<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'resolve'</span><span class="token punctuation">,</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>将<code>resolve</code>交给外部变量<code>resolveHandle</code>，当执行<code>resolveHandle()</code>即将<code>promise</code>对象的状态变为<code>resolve</code>，然后触发<code>then</code>的回调</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 执行</span>
+<span class="token function">resolveHandle</span><span class="token punctuation">(</span><span class="token string">'ok'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 打印</span>
+<span class="token comment">// resolve ok</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>以上即为<code>CancelToken</code>的基本原理，<strong>多看几遍</strong>理解更清晰</p> <p><code>CancelToken</code>还给我们提供了一个<code>source</code>方法</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// axios/lib/cancel/CancelToken.js 源码</span>
+
+CancelToken<span class="token punctuation">.</span><span class="token function-variable function">source</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">source</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> cancel<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> token <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CancelToken</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">executor</span><span class="token punctuation">(</span><span class="token parameter">c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cancel <span class="token operator">=</span> c<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    token<span class="token operator">:</span> token<span class="token punctuation">,</span>
+    cancel<span class="token operator">:</span> cancel
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>将cancel方法和token放在一个对象里返给我们</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">let</span> cancelObj <span class="token operator">=</span> axios<span class="token punctuation">.</span>CancelToken<span class="token punctuation">.</span>token<span class="token punctuation">.</span><span class="token function">source</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 这么使用</span>
+axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api/app/course'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+   params<span class="token operator">:</span> params<span class="token punctuation">,</span>
+   cancelToken<span class="token operator">:</span> cancelObj<span class="token punctuation">.</span>token
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+cancelObj<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//取消请求</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>上边封装里用的就是此方法。</p> <p>以上。</p></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">1/7/2022, 7:43:43 AM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-cb1513f6><li class="level-2" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#目标" class="sidebar-link reco-side-目标" data-v-cb1513f6>目标</a></li><li class="level-2" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#开始封装" class="sidebar-link reco-side-开始封装" data-v-cb1513f6>开始封装</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#请求及返回拦截" class="sidebar-link reco-side-请求及返回拦截" data-v-cb1513f6>请求及返回拦截</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#处理异常" class="sidebar-link reco-side-处理异常" data-v-cb1513f6>处理异常</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#对外暴露方法" class="sidebar-link reco-side-对外暴露方法" data-v-cb1513f6>对外暴露方法</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#支持取消页面内全部请求" class="sidebar-link reco-side-支持取消页面内全部请求" data-v-cb1513f6>支持取消页面内全部请求</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#引入接口配置文件" class="sidebar-link reco-side-引入接口配置文件" data-v-cb1513f6>引入接口配置文件</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#将配置转化为方法" class="sidebar-link reco-side-将配置转化为方法" data-v-cb1513f6>将配置转化为方法</a></li><li class="level-3" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#使用" class="sidebar-link reco-side-使用" data-v-cb1513f6>使用</a></li><li class="level-2" data-v-cb1513f6><a href="/blog-code/views/frontEnd/2020/20200715.html#canceltoken源码解析" class="sidebar-link reco-side-canceltoken源码解析" data-v-cb1513f6>CancelToken源码解析</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/blog-code/assets/js/app.31c0e747.js" defer></script><script src="/blog-code/assets/js/4.2cc2e057.js" defer></script><script src="/blog-code/assets/js/1.889b9bb3.js" defer></script><script src="/blog-code/assets/js/29.a18242d8.js" defer></script>
   </body>
 </html>
