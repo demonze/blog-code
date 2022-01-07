@@ -2,5 +2,6 @@
 node_modules/
 
 public
+./docs/.vuepress/dist/
 
 /.idea/
