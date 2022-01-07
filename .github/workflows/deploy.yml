@@ -15,12 +15,12 @@ jobs:
           persist-credentials: false
       - name: install and build
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
-          ACCESS_TOKEN: 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
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: docs/.vuepress/dist
